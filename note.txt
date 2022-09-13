@@ -1,0 +1,13 @@
+0. by default if there is any issue store in local storage then it will show to the dom.(fixed)
+1. if there is no file store in the local store then it will not show any error.(fixed)
+
+2. Check input box when create:
+    1. if any of the input box is empty then show an alert. (fixed)
+    2. if all the input box is filled then it will create a issue box and show it to the also added the info to the local storage as an object. (fixed)
+
+3. When click the close button
+    1. change the open text to close and change color.
+    2. update local store specific data.
+    3. add line through in description text.
+
+4. if click the delete button then it will remove the issue also remove it from local store.
