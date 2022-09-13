@@ -36,14 +36,16 @@ document.getElementById('issueInputForm').addEventListener('submit', submitIssue
 const closeIssue = id => {
   const issues = JSON.parse(localStorage.getItem('issues'));
 
-  const currentIssue = issues.find(issue => issue.id == id);
+  // same as following.
+  // const currentIssue = issues.find(issue => issue.id == id);
+
+  const currentIssue = issues.find(issue => parseInt(issue.id) === id);
+
   currentIssue.status = 'Closed';
 
   localStorage.setItem('issues', JSON.stringify(issues));
   fetchIssues();
 
-  const statusEl = document.getElementById("status-span");
-  statusEl.innerText = 'Closed';
 }
 
 // delete issue Function
@@ -67,8 +69,8 @@ const fetchIssues = () => {
       const { id, description, severity, assignedTo, status } = issues[i];
       issuesList.innerHTML += `<div class="well">
                               <h6>Issue ID: ${ id } </h6>
-                              <p><span class="label label-info" id="status-span"> ${ status } </span></p>
-                              <h3> ${ description } </h3>
+                              <p><span class="label text-capitalize ${ status === 'Open' ? 'label-info' : 'label-danger' }" id="status-span"> ${ status } </span></p>
+                              <h3 class="text-capitalize"> ${ description } </h3>
                               <p><span class="glyphicon glyphicon-time"></span> ${ severity }</p>
                               <p><span class="glyphicon glyphicon-user"></span> ${ assignedTo }</p>
                               <a href="#" onclick="closeIssue(${ id })" class="btn btn-warning">Close</a>
