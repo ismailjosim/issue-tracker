@@ -38,23 +38,22 @@ const closeIssue = id => {
 
   const currentIssue = issues.find(issue => issue.id == id);
   currentIssue.status = 'Closed';
-  console.log(currentIssue);
+
   localStorage.setItem('issues', JSON.stringify(issues));
   fetchIssues();
 
   const statusEl = document.getElementById("status-span");
   statusEl.innerText = 'Closed';
-  statusEl.style.background = 'red';
-
 }
 
 // delete issue Function
 const deleteIssue = id => {
   const issues = JSON.parse(localStorage.getItem('issues'));
-  const issuesBody = issues[0];
-  console.log(issuesBody);
-  const remainingIssues = issues.filter(issues.id !== id);
+
+  const remainingIssues = issues.filter(issue => issue.id != id);
+
   localStorage.setItem('issues', JSON.stringify(remainingIssues));
+  fetchIssues();
 }
 
 // Fetch issue Function
